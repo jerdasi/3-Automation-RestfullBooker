@@ -1,5 +1,5 @@
 import BaseApi from "./base.api.js";
-import {buildQueryParams} from "#helper/lib-api.js";
+import {buildQueryParams} from "$helper/lib-api.js";
 
 const BookerApi = {
     login: async (data) => await BaseApi.post("/login", data),
@@ -11,3 +11,5 @@ const BookerApi = {
     deleteBooking: async (idBooking) => await BaseApi.delete(`/booking/${idBooking}`),
     ping: async () => await BaseApi.get("/ping")
 }
+
+export default BookerApi;

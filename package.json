@@ -21,7 +21,7 @@
     "mochawesome": "^7.1.3"
   },
   "_moduleAliases": {
-    "#test": "test",
-    "#helper": "test/helper"
+    "$test": "test",
+    "$helper": "test/helper"
   }
 }
