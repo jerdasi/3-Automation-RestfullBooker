@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "link-module-alias",
     "preinstall": "link-module-alias && link-module-alias clean || true",
-    "test": "mocha test/scenario --reporter-options reportDir=reports"
+    "test": "mocha test/scenario --reporter-options reportDir=reports --timeout 10000"
   },
   "author": "Jeremia & Syifa",
   "license": "ISC",

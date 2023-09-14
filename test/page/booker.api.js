@@ -2,7 +2,7 @@ import BaseApi from "./base.api.js";
 import {buildQueryParams} from "$helper/lib-api.js";
 
 const BookerApi = {
-    login: async (data) => await BaseApi.post("/login", data),
+    login: async (data) => await BaseApi.post("/auth", data),
     getCollectionBooking: async (params) => await BaseApi.get("/booking", {params: buildQueryParams(params)}),
     getDocumentBooking: async (idBooking) => await BaseApi.get(`/booking/${idBooking}`),
     createBooking: async (data) => await BaseApi.post("/booking", data),
