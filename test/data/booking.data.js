@@ -10,6 +10,18 @@ export const VALID_BOOKING_DATA = {
     "additionalneeds" : "Breakfast"
 }
 
+export const INVALID_BOOKING_DATA = {
+    "firstname" : "Teofilus",
+    "lastname" : "Daniel Silitonga",
+    "totalprice" : "s",
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "s",
+        "checkout" : "s"
+    },
+    "additionalneeds" : "Breakfast"
+}
+
 export const PARTIAL_BOOKING_DATA = {
     "firstname" : "Teofilus",
     "lastname" : "Daniel Silitonga",

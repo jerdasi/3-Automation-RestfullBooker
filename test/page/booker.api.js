@@ -8,7 +8,11 @@ const BookerApi = {
     createBooking: async (data) => await BaseApi.post("/booking", data),
     updateBooking: async (idBooking, data) => await BaseApi.post(`/booking/${idBooking}?_method=PUT`, data),
     partialUpdateBooking: async (idBooking, data) => await BaseApi.post(`/booking/${idBooking}?_method=PATCH`, data),
-    deleteBooking: async (idBooking) => await BaseApi.delete(`/booking/${idBooking}`),
+    deleteBooking: async (idBooking, token) => await BaseApi.delete(`/booking/${idBooking}`, {
+        headers: {
+            "Cookie": `token=${token}`
+        }
+    }),
     ping: async () => await BaseApi.get("/ping")
 }
 

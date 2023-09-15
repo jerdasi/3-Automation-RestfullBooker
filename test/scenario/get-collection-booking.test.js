@@ -1,6 +1,7 @@
 import BookerApi from "$test/page/booker.api";
 import chai, {assert, expect} from "chai";
-import * as data from "$test/data/booking.data.js";
+import * as dataBooking from "$test/data/booking.data.js";
+import * as dataUser from "$test/data/user.data.js";
 import * as schema from "$test/schema/list-booking-id.schema.js";
 import chaiJsonSchema from "chai-json-schema";
 
@@ -17,13 +18,16 @@ describe("Get Collection Booking Test", () => {
 
     describe("Get Collection Booking Test Using Parameter", () => {
         let idBookingTest;
+        let token;
         before(async () => {
-            BookerApi.createBooking(data.VALID_BOOKING_DATA).then(result => {
-                idBookingTest = result.data.bookingid
-            })
+            const responseLogin = await BookerApi.login(dataUser.VALID_USER);
+            token = responseLogin.data.token;
+
+            const responseCreate = await BookerApi.createBooking(dataBooking.VALID_BOOKING_DATA);
+            idBookingTest = responseCreate.data.bookingid;
         });
         it('Validate list booking show data if given valid parameter', async () => {
-            return BookerApi.getCollectionBooking(data.VALID_PARAMS).then(result => {
+            return BookerApi.getCollectionBooking(dataBooking.VALID_PARAMS).then(result => {
                 assert.equal(result.status, 200);
                 expect(result.data).to.have.not.empty;
                 expect(result.data).to.be.jsonSchema(schema.LIST_BOOKING_ID_SCHEMA);
@@ -31,13 +35,13 @@ describe("Get Collection Booking Test", () => {
         });
 
         it('Validate list booking not show data if given invalid parameter', async () => {
-            return BookerApi.getCollectionBooking(data.INVALID_PARAMS).then(result => {
+            return BookerApi.getCollectionBooking(dataBooking.INVALID_PARAMS).then(result => {
                 assert.equal(result.status, 500);
             })
         });
 
-        after(() => {
-            BookerApi.deleteBooking(idBookingTest)
+        after(async () => {
+            const response = await BookerApi.deleteBooking(idBookingTest, token);
         })
     })
 })
