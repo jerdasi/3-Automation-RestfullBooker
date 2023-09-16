@@ -22,6 +22,18 @@ export const INVALID_BOOKING_DATA = {
     "additionalneeds" : "Breakfast"
 }
 
+export const VALID_BOOKING_DATA_UPDATE = {
+    "firstname" : "Wakjon",
+    "lastname" : "Azura",
+    "totalprice" : 1000,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2023-12-25",
+        "checkout" : "2023-12-26"
+    },
+    "additionalneeds" : "Chocolate Drink"
+}
+
 export const PARTIAL_BOOKING_DATA = {
     "firstname" : "Teofilus",
     "lastname" : "Daniel Silitonga",
