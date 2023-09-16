@@ -11,7 +11,7 @@ const BookerApi = {
             "Cookie": `token=${token}`
         }
     }),
-    partialUpdateBooking: async (idBooking, data, token) => await BaseApi.post(`/booking/${idBooking}?_method=PATCH`, data, {
+    partialUpdateBooking: async (idBooking, data, token) => await BaseApi.patch(`/booking/${idBooking}?_method=PATCH`, data, {
         headers: {
             "Cookie": `token=${token}`
         }

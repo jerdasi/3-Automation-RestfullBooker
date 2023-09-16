@@ -40,8 +40,7 @@ describe("Create Booking Test", () => {
 
     afterEach(async () => {
         if (idBooking) {
-            const responseDelete = await BookerApi.deleteBooking(idBooking, token);
-            console.log(responseDelete.status);
+            await BookerApi.deleteBooking(idBooking, token);
         }
     })
 })

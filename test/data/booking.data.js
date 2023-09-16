@@ -14,12 +14,12 @@ export const INVALID_BOOKING_DATA = {
     "firstname" : "Teofilus",
     "lastname" : "Daniel Silitonga",
     "totalprice" : "s",
-    "depositpaid" : true,
+    "depositpaid" : 1,
     "bookingdates" : {
         "checkin" : "s",
         "checkout" : "s"
     },
-    "additionalneeds" : "Breakfast"
+    "additionalneeds" : 1
 }
 
 export const VALID_BOOKING_DATA_UPDATE = {
@@ -35,8 +35,8 @@ export const VALID_BOOKING_DATA_UPDATE = {
 }
 
 export const PARTIAL_BOOKING_DATA = {
-    "firstname" : "Teofilus",
-    "lastname" : "Daniel Silitonga",
+    "firstname" : "Balala",
+    "lastname" : "Calala",
 }
 
 export const VALID_PARAMS = {

@@ -1,4 +1,4 @@
-import chai, { assert, expect } from "chai";
+import chai, {assert, expect} from "chai";
 import BookerApi from "$test/page/booker.api.js";
 import * as dataUser from "$test/data/user.data.js";
 import * as dataBooking from "$test/data/booking.data.js";
@@ -21,7 +21,6 @@ describe("Update Booking Test", () => {
 
 
     it("Should success update when Id Booking and data is valid", async () => {
-        console.log(idBooking, token)
         const response = await BookerApi.updateBooking(idBooking, dataBooking.VALID_BOOKING_DATA_UPDATE, token);
 
         assert.equal(response.status, 200);
@@ -31,13 +30,21 @@ describe("Update Booking Test", () => {
     it("Should error update when Id not found", async () => {
         const response = await BookerApi.updateBooking(0, dataBooking.VALID_BOOKING_DATA_UPDATE, token);
 
-        assert.equal(response.status, 404);
+        assert.equal(response.status, 405); // Method Not Allowed
     })
 
-    it("Should error update when data is not valid", async () => {
-        const response = await BookerApi.updateBooking(idBooking, dataBooking.INVALID_BOOKING_DATA, token);
+    describe("Update Booking Test When Data is Not Valid", async () => {
+        it("should error 500 when firstname or lastname data not valid", async () => {
+            const dataBookingInvalid = { ...dataBooking.VALID_BOOKING_DATA , firstname: 1};
+            const response = await BookerApi.updateBooking(idBooking, dataBookingInvalid, token);
+            assert.equal(response.status, 500);
+        })
 
-        assert.equal(response.status, 404);
+        it("should success when other data is not valid and updated without same with expected schema", async () => {
+            const response = await BookerApi.updateBooking(idBooking, dataBooking.INVALID_BOOKING_DATA, token);
+            assert.equal(response.status, 200);
+            expect(response.data).to.be.not.jsonSchema(schema.BOOKING_SCHEMA)
+        })
     })
 
     after(async () => {
